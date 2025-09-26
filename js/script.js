@@ -31,6 +31,38 @@ window.onscroll = () => {
     navbar.classList.remove('active');
 };
 
+// Read More functionality for services
+document.addEventListener('DOMContentLoaded', function() {
+    const readMoreBtns = document.querySelectorAll('.read-more-btn');
+    
+    readMoreBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const serviceBox = this.closest('.services-box');
+            const description = serviceBox.querySelector('.service-description');
+            const moreText = serviceBox.querySelector('.more-text');
+            
+            // Toggle expanded state
+            const isExpanded = description.classList.contains('expanded');
+            
+            if (isExpanded) {
+                // Collapse
+                description.classList.remove('expanded');
+                serviceBox.classList.remove('expanded');
+                this.textContent = 'Read More';
+                this.classList.remove('expanded');
+            } else {
+                
+                description.classList.add('expanded');
+                serviceBox.classList.add('expanded');
+                this.textContent = 'Read Less';
+                this.classList.add('expanded');
+            }
+        });
+    });
+});
+
 ScrollReveal({
 //    reset:true,
     distance: '80px',
