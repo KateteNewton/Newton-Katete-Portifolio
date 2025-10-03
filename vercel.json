@@ -12,7 +12,7 @@
       "dest": "/css/$1"
     },
     {
-      "src": "/js/(.*)",
+      "src": "/js/(.*)", 
       "dest": "/js/$1"
     },
     {
@@ -24,8 +24,12 @@
       "dest": "/documents/$1"
     },
     {
-      "src": "/public/(.*)",
-      "dest": "/public/$1"
+      "src": "/sitemap.xml",
+      "dest": "/sitemap.xml"
+    },
+    {
+      "src": "/robots.txt",
+      "dest": "/robots.txt"
     },
     {
       "src": "/(.*)",
