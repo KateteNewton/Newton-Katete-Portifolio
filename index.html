@@ -1,240 +1,473 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newton Katete - My Portifolio Website</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="css/style.css">
-   <meta name="google-site-verification" content="Au2OlzNSSrGMqx2esOX8ttHXw0A8cZ06pnMbddT4rfI" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Newton Katete — Computer Science student, software developer and technology entrepreneur from Zambia." />
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Newton Katete | Portfolio</title>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { overflow-x: hidden; }
+    img, video, svg { max-width: 100%; height: auto; }
+
+    .hero-portrait {
+      display: block;
+      width: min(100%, 430px);
+      height: auto;
+      justify-self: end;
+      object-fit: cover;
+    }
+
+    .menu-toggle { display: none; }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .section-heading,
+      .project,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .hero-grid, .project, .about-grid, .contact-grid {
+        gap: 2rem !important;
+      }
+
+      .hero-portrait {
+        justify-self: start;
+        width: min(100%, 390px);
+      }
+
+      .screenshot-placeholder {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(100% - 2rem, 1180px) !important;
+        margin-inline: auto;
+      }
+
+      .nav {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 64px;
+      }
+
+      .brand {
+        text-align: center;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        border-radius: 8px;
+        font: inherit;
+        cursor: pointer;
+        z-index: 1100;
+      }
+
+      .menu-toggle:hover,
+      .menu-toggle:focus-visible {
+        background: rgba(127, 127, 127, 0.12);
+        outline: none;
+      }
+
+      .menu-icon {
+        display: block;
+        font-size: 1.75rem;
+        line-height: 1;
+        font-weight: 400;
+      }
+
+      .nav-links {
+        display: none !important;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0 !important;
+        padding: .75rem 1rem 1rem;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-top: 0;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.10);
+      }
+
+      .nav-links a {
+        color: #111111 !important;
+        background: #ffffff;
+        border-bottom: 1px solid #eeeeee;
+      }
+
+      .nav-links a:last-child {
+        border-bottom: 0;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        background: #f5f5f5;
+      }
+
+      .nav-links.is-open { display: flex !important; }
+
+      .nav-links a {
+        display: block;
+        padding: .8rem 0;
+      }
+
+      .nav-cta { text-align: center; }
+
+      h1 { font-size: clamp(2.4rem, 12vw, 4.2rem) !important; }
+      h2 { font-size: clamp(1.9rem, 9vw, 3rem) !important; }
+      .project h3 { font-size: clamp(1.65rem, 8vw, 2.4rem) !important; }
+
+      .actions,
+      .project-links {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .project-meta {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .work-item,
+      .contact-links a {
+        gap: .5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container { width: min(100% - 1.5rem, 1180px) !important; }
+
+      .actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .actions .button {
+        width: 100%;
+        text-align: center;
+      }
+
+      .project-links {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .work-item,
+      .contact-links a,
+      .footer-inner {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+      }
+
+      .work-item span:last-child,
+      .contact-links a span:last-child {
+        text-align: left !important;
+      }
+
+      .hero-portrait { width: 100%; }
+    }
+  </style>
+
 </head>
 <body>
-     <header class="header">
-        <a href="" class="logo">Newton Katete</a>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home">Newton Katete</a>
 
-        <i class="bx bx-menu" id="menu-icon"></i>
-
-        <nav class="navbar">
-            <a href="#home" class="active">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Services</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
-        </nav>
-     </header>
-
-     <section class="home" id="home">
-        <div class="home-content">
-            <h3>Hello, It's Me</h3>
-            <h1>Newton Katete</h1>
-            <h3>And I'm a <span class="multiple-text"></span></h3>
-            <p>I'm a passionate web developer with expertise in creating 
-                modern, responsive websites and web applications. I specialize in front-end 
-                and backend development with a focus on user experience</p>
-            <div class="social-media">
-                <a href="https://www.facebook.com/newtonkatete"><i class='bx bxl-facebook'></i></a>
-                <a href="https://x.com/newtonkatete"><i class='bx bxl-twitter'></i></a>
-                <a href="https://www.instagram.com/nkmotivation"><i class='bx bxl-instagram-alt'></i></a>
-                <a href="https://www.linkedin.com/in/newton-katete-264568215"><i class='bx bxl-linkedin'></i></a>
-            </div>
-            <a href="documents/NEWTON KATETE CV.pdf" download class="btn" id="download-cv">
-        <i class='bx bx-download'></i> Download CV
-    </a>
-        </div>
-        <div class="home-img">
-            <img src="images/newton.png" alt="">
-        </div>
-     </section>
-
-     <section class="about" id="about">
-        <div class="about-img">
-            <img src="images/newton.png" alt="">
-        </div>
-        <div class="about-content">
-            <h2 class="heading">About <span>Me</span></h2>
-            <h3>Web Site Developer</h3>
-             <p>I'm a dedicated web developer with over 3 years of experience 
-                in building websites, systems and web applications. 
-                My expertise includes HTML, CSS, JavaScript, and C++ and C(Basics). 
-                I'm passionate about creating efficient, scalable solutions that solve real-world problems. 
-                When I'm not coding, I enjoy learning new technologies and reading books.</p>
-           <a href="#" class="btn">Read More</a> 
-        </div>
-     </section>
-
-      <section class="services" id="services">
-    <h2 class="heading">My <span>Services</span></h2>
-    <div class="services-container">
-        <div class="services-box">
-           <i class='bx bx-code-alt'></i>
-           <h3>Web Development</h3>
-            <p class="service-description">I create responsive, modern websites using the latest 
-                web technologies. From simple landing pages to complex web applications, 
-                I ensure high performance and excellent user experience across all devices.
-                <span class="more-text">I specialize in front-end frameworks like React, 
-                back-end technologies like php, and database management. 
-                My development process includes thorough testing, maintainance 
-                and implementing security best practices to deliver solutions.</span>
-            </p>
-           <a href="#" class="read-more-btn btn">Read More</a>
-        </div>
-        <div class="services-box">
-           <i class='bx bxs-paint'></i>
-           <h3>Graphic Design</h3>
-           <p class="service-description">I offer professional graphic design services including 
-            logo design, branding, and UI/UX design. My designs are focused on creating 
-            visually appealing and functional interfaces that enhance user engagement.
-            <span class="more-text">My design toolkit includes Adobe photoshop
-            and modern design tools like Canva and Pixellab. 
-            I create comprehensive brand identities, marketing materials, and user-centered 
-            designs that communicate your message effectively while maintaining visual consistency 
-            across all platforms.</span>
-           </p>
-           <a href="#" class="read-more-btn btn">Read More</a>
-        </div>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu">
+        <span class="menu-icon" aria-hidden="true">☰</span>
+      </button>
+      <nav class="nav-links" id="primary-navigation" aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-cta" href="documents/NEWTON KATETE CV.pdf" download="Newton-Katete-CV.pdf">Download CV</a>
+      </nav>
     </div>
-</section>
+  </header>
 
-      <section class="portfolio" id="portfolio">
-    <h2 class="heading">Latest <span>Projects</span> and <span>Works</span></h2>
-    
-   
-    <div class="portfolio-category">
-        <h3 class="category-title">Graphic Design Catalogue</h3>
-        <div class="portfolio-container">
-            <div class="portfolio-box">
-                <img src="images/logo.png" alt="Graphic Design Project 1">
-                <div class="portfolio-layer">
-                    <h4>Brand Identity Design</h4>
-                    <p>Complete brand identity package including logo, color palette, and brand guidelines</p>
-                    <a href="#"><i class="bx bx-link-external"></i></a>
-                </div>
-            </div>
-            <div class="portfolio-box">
-                <img src="images/gnx entertainment.png" alt="Graphic Design Project 2">
-                <div class="portfolio-layer">
-                    <h4>Marketing Materials</h4>
-                    <p>Brochures, flyers, and social media graphics for various marketing campaigns</p>
-                    <a href="#"><i class="bx bx-link-external"></i></a>
-                </div>
-            </div>
-            <div class="portfolio-box">
-                <img src="images/bannar.png" alt="Graphic Design Project 3">
-                <div class="portfolio-layer">
-                    <h4>UI/UX Design</h4>
-                    <p>User interface and experience designs for web and mobile applications</p>
-                    <a href="#"><i class="bx bx-link-external"></i></a>
-                </div>
-            </div>
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">Computer Science · Software · Entrepreneurship</p>
+          <h1>I build useful digital products.</h1>
+          <p class="hero-copy">
+            I'm Newton Katete, a Computer Science student at The Copperbelt University,
+            software developer and technology entrepreneur from Zambia. I enjoy turning
+            practical problems into simple, working software products.
+          </p>
+
+          <div class="actions">
+            <a class="button primary" href="#work">See my work</a>
+            <a class="button secondary" href="https://www.linkedin.com/in/newton-katete-264568215/">LinkedIn</a>
+          </div>
         </div>
-    </div>
 
-   
-    <div class="portfolio-category">
-        <h3 class="category-title">Web Development Projects</h3>
-        <div class="portfolio-container">
-            <div class="portfolio-box">
-                <img src="images/blushingcosmetics.png" alt="Project 1 - Coming Soon">
-                <div class="portfolio-layer">
-                    <h4>Project 1</h4>
-                    <p>Exciting web development project coming soon. Stay tuned for the reveal!</p>
-                    <a href="https://blushingcosmetics.great-site.net/"><i class="bx bx-link-external"></i></a>
-                </div>
-            </div>
-            <div class="portfolio-box">
-                <img src="images/Project 2.png" alt="Project 2 - Coming Soon">
-                <div class="portfolio-layer">
-                    <h4>Project 2</h4>
-                    <p>Innovative solution in development. Launching shortly!</p>
-                    <a href="#"><i class="bx bx-link-external"></i></a>
-                </div>
-            </div>
-            <div class="portfolio-box">
-                <img src="images/Project 3.png" alt="Project 3 - Coming Soon">
-                <div class="portfolio-layer">
-                    <h4>Project 3</h4>
-                    <p>Amazing project underway. Watch this space for updates!</p>
-                    <a href="#"><i class="bx bx-link-external"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-  
-    <div class="coming-soon">
-        <h3>More Amazing Projects Coming Soon!</h3>
-        <p>I'm currently working on several exciting projects that will be revealed shortly.</p>
-    </div>
-</section>
-
-      
-      <section class="contact" id="contact">
-        <h2 class="heading">Contact <span>Me!</span></h2>
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3>Let's Get In Touch!</h3>
-                <p>I'm always open to discussing new opportunities and creative projects. Feel free to reach out to me through any of the following channels.</p>
-                
-                <div class="contact-details">
-                    <div class="detail">
-                        <i class='bx bx-map'></i>
-                        <div>
-                            <h4>Location</h4>
-                            <p>Kabwe, Zambia</p>
-                        </div>
-                    </div>
-                    <div class="detail">
-                        <i class='bx bx-phone'></i>
-                        <div>
-                            <h4>Call Me</h4>
-                            <p>+260762400061</p>
-                        </div>
-                    </div>
-                    <div class="detail">
-                        <i class='bx bx-envelope'></i>
-                        <div>
-                            <h4>Email Me</h4>
-                            <p>newtonisaackatete@gmail.com</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="social-contact">
-                <a href="https://www.facebook.com/newtonkatete"><i class='bx bxl-facebook'></i></a>
-                <a href="https://x.com/newtonkatete"><i class='bx bxl-twitter'></i></a>
-                <a href="https://www.instagram.com/nkmotivation"><i class='bx bxl-instagram-alt'></i></a>
-                <a href="https://www.linkedin.com/in/newton-katete-264568215"><i class='bx bxl-linkedin'></i></a>
-                <a href="https://wa.me/260762400061" target="_blank"><i class='bx bxl-whatsapp'></i></a>
-                </div>
-            </div>
-            
-<form class="contact-form" action="https://formspree.io/f/xqaykadn" method="POST" >
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <input type="text" name="subject" placeholder="Subject" required>
-    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-    <button type="submit" class="btn">Send Message</button>
-</form>
-
-        </div>
+        <img class="hero-portrait" src="images/newton.jpg" alt="Newton Katete" />
+      </div>
     </section>
 
-    <footer class="footer">
-        <div class="footer-text">
-            <p>Copyright &copy; 2025 by Newton Katete</p>
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Selected work</p>
+            <h2>Projects worth showing.</h2>
+          </div>
+          <p>
+            A smaller selection of projects that best represents my work across education,
+            product development and business software.
+          </p>
         </div>
 
-        <div class="footer-iconTop">
-            <a href="#home"><i class="bx bx-up-arrow-alt"></i></a>
+        <article class="project">
+          <div>
+            <p class="project-number">01 · EdTech</p>
+            <h3>UniData</h3>
+            <p class="project-role">Co-Founder · Head of Operations</p>
+            <p class="project-description">
+              UniData is an educational technology platform that gives university students
+              one place to access lecture notes, textbooks, past examination papers, quizzes
+              and other academic resources.
+            </p>
+            <ul class="project-meta">
+              <li>Academic resources</li>
+              <li>Past papers</li>
+              <li>Quizzes</li>
+              <li>Web and mobile access</li>
+            </ul>
+            <div class="project-links">
+            
+              <a class="text-link" href="https://unidata-929a9.web.app/">Live product ↗</a>
+            
+              <a class="text-link" href="https://www.linkedin.com/posts/newton-katete-264568215_unidata-ictaz-cbu-activity-7479568685221920768-A2Gm?utm_source=share&utm_medium=member_desktop&rcm=ACoAADZdqWwBqMPH9YZx68iUuxWCqmD-HNGrtLg">Case study ↗</a>
+            </div>
+          </div>
+
+         
+           <img src="images/unidata.png" alt="unidata platform">
+         
+        </article>
+
+        <article class="project">
+          <div>
+            <p class="project-number">02 · Academic platform</p>
+            <h3>ZitConnect</h3>
+            <p class="project-role">Developer · University Project</p>
+            <p class="project-description">
+              A peer-to-peer tutoring platform designed to help university students find
+              experienced tutors by course, view tutor information and ratings, and arrange
+              private or group tutoring sessions.
+            </p>
+            <ul class="project-meta">
+              <li>Python</li>
+              <li>Flask</li>
+              <li>MySQL</li>
+              <li>HTML, CSS and JavaScript</li>
+            </ul>
+            <div class="project-links">
+              <a class="text-link" href="https://github.com/KateteNewton">GitHub ↗</a>
+            </div>
+          </div>
+
+        
+            <img src="images/zitconnect.png" alt="zitconnect">
+        
+        </article>
+
+        <article class="project">
+          <div>
+            <p class="project-number">03 · Website Design &amp; Development</p>
+            <h3>UniData Official Website</h3>
+            <p class="project-role">Designer · Developer</p>
+            <p class="project-description">
+              I designed and developed the official UniData website to present the platform,
+              explain what it offers to university students, and provide a clear online presence
+              for the UniData brand.
+            </p>
+            <ul class="project-meta">
+              <li>Responsive web design</li>
+              <li>Product presentation</li>
+              <li>Mobile-friendly layout</li>
+              <li>Production deployment</li>
+            </ul>
+            <div class="project-links">
+              <a class="text-link" href="https://unidata-website.vercel.app/" target="_blank" rel="noopener noreferrer">Visit website ↗</a>
+            </div>
+          </div>
+          <img src="images/unidataweb.png" alt="unidata website">
+        </article>
+
+        <div class="other-work">
+          <h3>Other work</h3>
+          <div class="work-list">
+            <div class="work-item"><span>MediSwitch</span><span>Healthcare information exchange</span></div>
+            <div class="work-item"><span>Zed Rate</span><span>Entertainment reviews</span></div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    
-    <script src="https://unpkg.com/scrollreveal"></script>
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">About</p>
+            <h2>Student, developer and builder.</h2>
+          </div>
+          <p>
+            My work sits between software engineering, product thinking and entrepreneurship.
+          </p>
+        </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"S></script>
+        <div class="about-grid">
+          <div class="about-copy">
+            <p>
+              I'm currently studying Computer Science at The Copperbelt University in Kitwe, Zambia.
+              Outside coursework, I build software projects that explore real problems in
+              education, business operations, finance, healthcare and digital services.
+            </p>
+            <p>
+              I also work on technology ventures, including UniData and other products under
+              Upsurge Technologies. I am especially interested in software that can be useful
+              in local African markets without becoming unnecessarily complicated.
+            </p>
 
-     <script src="js/script.js"></script>
+            <div class="about-block">
+              <h3>Education</h3>
+              <p>The Copperbelt University — Bachelor's Degree in Computer Science (Undergraduate)</p>
+            </div>
+
+            <div class="about-block">
+              <h3>Community</h3>
+              <p>
+                Class Representative at CBU, with involvement in student technology communities
+                including ICTAZ CBU Student Chapter and IEEE CBU Student Branch.
+              </p>
+            </div>
+          </div>
+
+          <div class="skills" aria-label="Skills and technologies">
+            <div class="skill-group">
+              <h3>Frontend</h3>
+              <p>HTML5, CSS3, JavaScript, React Native, Expo</p>
+            </div>
+            <div class="skill-group">
+              <h3>Backend</h3>
+              <p>PHP, Python, Flask</p>
+            </div>
+            <div class="skill-group">
+              <h3>Databases</h3>
+              <p>MySQL, SQL, database design</p>
+            </div>
+            <div class="skill-group">
+              <h3>Programming</h3>
+              <p>Java, Python, JavaScript, PHP, C, C++</p>
+            </div>
+            <div class="skill-group">
+              <h3>Tools</h3>
+              <p>Git, GitHub, VS Code, XAMPP, Expo, Photoshop</p>
+            </div>
+            <div class="skill-group">
+              <h3>Interested in</h3>
+              <p>Software architecture, SaaS, mobile development, API integration and Graphics Design</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Have a project or opportunity in mind?</h2>
+          <p>
+            I'm open to conversations around software development, product building,
+            internships, collaborations and technology ventures.
+          </p>
+        </div>
+
+        <div class="contact-links">
+          <a href="mailto:newtonisaackatete@gmail.com"><span>Email</span><span>Add your email ↗</span></a>
+          <a href="https://www.linkedin.com/in/newton-katete-264568215/"><span>LinkedIn</span><span>Add profile link ↗</span></a>
+          <a href="https://github.com/KateteNewton"><span>GitHub</span><span>Add profile link ↗</span></a>
+          <a href="documents/NEWTON KATETE CV.pdf" download="Newton-Katete-CV.pdf"><span>CV / Résumé</span><span>Download PDF ↓</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Newton Katete</span>
+      <span>Kitwe, Zambia</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('is-open');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+        const menuIcon = menuToggle.querySelector('.menu-icon');
+        if (menuIcon) menuIcon.textContent = isOpen ? '✕' : '☰';
+      });
+
+      navLinks.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('is-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.setAttribute('aria-label', 'Open navigation menu');
+          const menuIcon = menuToggle.querySelector('.menu-icon');
+          if (menuIcon) menuIcon.textContent = '☰';
+        });
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 720) {
+          navLinks.classList.remove('is-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.setAttribute('aria-label', 'Open navigation menu');
+          const menuIcon = menuToggle.querySelector('.menu-icon');
+          if (menuIcon) menuIcon.textContent = '☰';
+        }
+      });
+    }
+  </script>
 </body>
 </html>
